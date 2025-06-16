@@ -1,18 +1,17 @@
 <?php
+session_start();
+require_once 'functions.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-session_start();
-require_once 'functions.php';
+$statusMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['email'])) {
         $email = trim($_POST['email']);
         $_SESSION['email'] = $email;
-
         $code = generateVerificationCode();
         $_SESSION['verification_code'] = $code;
-
         sendVerificationEmail($email, $code);
         $statusMessage = "Verification code sent to <strong>$email</strong>.";
     }
@@ -36,22 +35,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head><title>Email Verification</title></head>
 <body>
-<h2>Register for GitHub Timeline</h2>
+  <h2>Register for GitHub Timeline</h2>
 
-<?php if (!empty($statusMessage)): ?>
+  <?php if ($statusMessage): ?>
     <p><?= $statusMessage ?></p>
-<?php endif; ?>
+  <?php endif; ?>
 
-<form method="POST">
+  <form method="POST">
     <input type="email" name="email" required placeholder="Enter email">
     <button id="submit-email">Submit</button>
-</form>
+  </form>
 
-<br>
+  <br>
 
-<form method="POST">
+  <form method="POST">
     <input type="text" name="verification_code" maxlength="6" required placeholder="Enter code">
     <button id="submit-verification">Verify</button>
-</form>
+  </form>
 </body>
 </html>
