@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once 'functions.php';  // ✅ Add this line if missing
+
 <!DOCTYPE html>
 <html>
 <head><title>Email Verification</title></head>
