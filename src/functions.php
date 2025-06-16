@@ -1,3 +1,4 @@
+echo "functions.php loaded\n";
 function generateVerificationCode() {
     return str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
 }
