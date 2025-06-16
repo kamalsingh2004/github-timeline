@@ -23,7 +23,6 @@ function unsubscribeEmail($email) {
         file_put_contents($file, implode(PHP_EOL, $updated) . PHP_EOL);
     }
 }
-<p>Your verification code is: <strong>123456</strong></p>
 function sendVerificationEmail($email, $code) {
     $subject = "Your Verification Code";
     $message = "<p>Your verification code is: <strong>$code</strong></p>";
